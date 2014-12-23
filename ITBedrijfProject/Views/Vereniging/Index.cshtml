@@ -1,0 +1,30 @@
+﻿@model ITBedrijfProject.PresentationModels.PMIndex
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Verenigingen</h2>
+<p><a href="/Vereniging/NewOrganisation">Nieuwe vereniging</a></p>
+<table>
+    <tr>
+        <td width="200px">@Html.LabelFor(a => a.OrganisationName)</td>
+        <td width="200px">@Html.LabelFor(a => a.Address)</td>
+        <td width="200px">@Html.LabelFor(a => a.Email)</td>
+        <td width="200px">@Html.LabelFor(a => a.Phone)</td>
+    </tr>
+
+    @foreach (var item in @ViewBag.Organisations)
+    {
+        <tr>
+            <td>@item.OrganisationName</td>
+            <td>@item.Address</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+            <td><a href="">Details</a> | <a href="">Bewerken</a>
+        </tr>
+    }
+
+</table>
+

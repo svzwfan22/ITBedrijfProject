@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "NewOrganisation";
+}
+
+<h2>New Organisation</h2>
+@using (Html.BeginForm("NewOrganisation", "Vereniging", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<table>
+    <tr>
+        <td><label>Login</label></td>
+        <td><input type="text" name="Login"/></td>
+    </tr>
+    <tr>
+        <td><label>Password</label></td>
+        <td><input type="password" name="Password" /></td>
+    </tr>
+    <tr>
+        <td><label>Database Name</label></td>
+        <td><input type="text" name="DbName" /></td>
+    </tr>
+    <tr>
+        <td><label>Database Login</label></td>
+        <td><input type="text" name="DbLogin" /></td>
+    </tr>
+    <tr>
+        <td><label>Database Password</label></td>
+        <td><input type="password" name="DbPassword" /></td>
+    </tr>
+    <tr>
+        <td><label>Organisation Name</label></td>
+        <td><input type="text" name="OrganisationName" /></td>
+    </tr>
+    <tr>
+        <td><label>Address</label></td>
+        <td><input type="text" name="Address" /></td>
+    </tr>
+    <tr>
+        <td><label>Email</label></td>
+        <td><input type="text" name="Email" /></td>
+    </tr>
+    <tr>
+        <td><label>Phone</label></td>
+        <td><input type="text" name="Phone" /></td>
+    </tr>
+   
+    
+</table>
+    <br />
+
+    <input type="submit" value="Create" />
+}
