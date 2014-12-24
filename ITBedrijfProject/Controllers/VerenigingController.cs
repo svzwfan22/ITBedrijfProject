@@ -41,8 +41,34 @@ namespace ITBedrijfProject.Controllers
         {
             Organisation organisation = DAOrganisationRegister.GetOrganisationById(id);
             ViewBag.Organisation = organisation;
-            ViewBag.FileId = id;
+            ViewBag.Id = id;
             return View(organisation);
+        }
+
+        [HttpPost]
+        public ActionResult Details()
+        {
+           
+            return View("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Organisation organisation = DAOrganisationRegister.GetOrganisationById(id);
+            ViewBag.Organisation = organisation;
+            ViewBag.Id = id;
+            return View(organisation);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int Id, string Login, string Password, string DbName, string DbLogin, string DbPassword, string OrganisationName, string Address, string Email, string Phone)
+        {
+
+            DAOrganisationRegister.UpdateOrganisation(Id, Login, Password, DbName, DbLogin, DbPassword, OrganisationName, Address, Email, Phone);
+            return RedirectToAction("Index");
+
+
         }
     }
 }

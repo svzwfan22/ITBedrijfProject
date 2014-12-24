@@ -1,0 +1,56 @@
+﻿@model ITBedrijfProject.Models.Organisation
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Vereniging", FormMethod.Post))
+{
+    <table>
+        <input type="hidden" name="Id" value="@ViewBag.Id"/>
+        <tr>
+            <td><label>Organisation Name</label></td>
+            <td><input type="text" name="OrganisationName" value="@ViewBag.Organisation.OrganisationName"></td>
+        </tr>
+        <tr>
+            <td><label>Login</label></td>
+            <td> <input type="text" name="Login" value="@ViewBag.Organisation.Login"></td>
+        </tr>
+        <tr>
+            <td><label>Password</label></td>
+            <td> <input type="text" name="Password" value="@ViewBag.Organisation.Password"></td>
+        </tr>
+        <tr>
+            <td><label>DbName</label></td>
+            <td> <input type="text" name="DbName" value="@ViewBag.Organisation.DbName"></td>
+        </tr>
+        <tr>
+            <td><label>DbLogin</label></td>
+            <td> <input type="text" name="DbLogin" value="@ViewBag.Organisation.DbLogin"></td>
+        </tr>
+        <tr>
+            <td><label>DbPassword</label></td>
+            <td> <input type="text" name="DbPassword" value="@ViewBag.Organisation.DbPassword"></td>
+        </tr>
+        <tr>
+            <td><label>Address</label></td>
+            <td> <input type="text" name="Address" value="@ViewBag.Organisation.Address"></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td> <input type="text" name="Email" value="@ViewBag.Organisation.Email"></td>
+        </tr>
+        <tr>
+            <td><label>Phone</label></td>
+            <td> <input type="text" name="Phone" value="@ViewBag.Organisation.Phone"></td>
+        </tr>
+
+    </table>
+
+    <br />
+    <input type="submit" name="Edit" value="Save" />
+}
+
+

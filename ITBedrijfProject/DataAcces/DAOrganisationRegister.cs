@@ -73,5 +73,22 @@ namespace ITBedrijfProject.DataAcces
             return organisation;
         }
 
+        public static int UpdateOrganisation(int id, string Login, string Password, string DbName, string DbLogin, string DbPassword, string OrganisationName, string Address, string Email, string Phone)
+        {
+            string sql = "UPDATE Organisations SET OrganisationName=@OrganisationName, Login=@Login, Password=@Password, DbName=@DbName, DbLogin=@DbLogin, DbPassword=@DbPassword, Address=@Address, Email=@Email, Phone=@Phone WHERE ID=@ID";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
+            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@OrganisationName", OrganisationName);
+            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@Login", Login);
+            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@Password", Password);
+            DbParameter par5 = Database.AddParameter(CONNECTIONSTRING, "@DbName", DbName);
+            DbParameter par6 = Database.AddParameter(CONNECTIONSTRING, "@DbLogin", DbLogin);
+            DbParameter par7 = Database.AddParameter(CONNECTIONSTRING, "@DbPassword", DbPassword);
+            DbParameter par8 = Database.AddParameter(CONNECTIONSTRING, "@Address", Address);
+            DbParameter par9 = Database.AddParameter(CONNECTIONSTRING, "@Email", Email);
+            DbParameter par10 = Database.AddParameter(CONNECTIONSTRING, "@Phone", Phone);
+
+            return Database.ModifyData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5, par6, par7, par8, par9, par10);
+        }
+
     }
 }
