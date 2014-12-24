@@ -51,5 +51,27 @@ namespace ITBedrijfProject.DataAcces
             return Database.InsertData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5, par6, par7, par8, par9);
         }
 
+        public static Organisation GetOrganisationById(int id)
+        {
+            string sql = "SELECT * FROM Organisations WHERE ID=@ID";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
+            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql, par1);
+            Organisation organisation = new Organisation();
+            while (reader.Read())
+            {
+                organisation.Id = (int)reader["ID"];
+                organisation.Login = reader["Login"].ToString();
+                organisation.Password = reader["Password"].ToString();
+                organisation.DbName = reader["DbName"].ToString();
+                organisation.DbLogin = reader["DbLogin"].ToString();
+                organisation.DbPassword = reader["DbPassword"].ToString();
+                organisation.OrganisationName = reader["OrganisationName"].ToString();
+                organisation.Address = reader["Address"].ToString();
+                organisation.Email = reader["Email"].ToString();
+                organisation.Phone = reader["Phone"].ToString();
+            }
+            return organisation;
+        }
+
     }
 }

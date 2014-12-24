@@ -1,0 +1,54 @@
+﻿@model ITBedrijfProject.Models.Organisation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@using (Html.BeginForm("EditItem", "Files", FormMethod.Post))
+{
+    <table>
+
+        <tr>
+            <td><label>Organisation Name</label></td>
+            <td> @ViewBag.Organisation.OrganisationName </td>
+        </tr>
+        <tr>
+            <td><label>Login</label></td>
+            <td> @ViewBag.Organisation.Login </td>
+        </tr>
+        <tr>
+            <td><label>Password</label></td>
+            <td> @ViewBag.Organisation.Password </td>
+        </tr>
+        <tr>
+            <td><label>DbName</label></td>
+            <td> @ViewBag.Organisation.DbName </td>
+        </tr>
+        <tr>
+            <td><label>DbLogin</label></td>
+            <td> @ViewBag.Organisation.DbLogin </td>
+        </tr>
+        <tr>
+            <td><label>DbPassword</label></td>
+            <td> @ViewBag.Organisation.DbPassword </td>
+        </tr>
+        <tr>
+            <td><label>Address</label></td>
+            <td> @ViewBag.Organisation.Address </td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td> @ViewBag.Organisation.Email </td>
+        </tr>
+        <tr>
+            <td><label>Phone</label></td>
+            <td> @ViewBag.Organisation.Phone </td>
+        </tr>
+
+    </table>
+
+    <br />
+    <input type="submit" name="Back" value="Back" />
+}

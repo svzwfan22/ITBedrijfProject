@@ -1,6 +1,7 @@
 ﻿using ITBedrijfProject.DataAcces;
 using ITBedrijfProject.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -33,6 +34,15 @@ namespace ITBedrijfProject.Controllers
         {
             DAOrganisationRegister.InsertOrganisation(Login,Password,DbName,DbLogin,DbPassword,OrganisationName,Address,Email,Phone);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            Organisation organisation = DAOrganisationRegister.GetOrganisationById(id);
+            ViewBag.Organisation = organisation;
+            ViewBag.FileId = id;
+            return View(organisation);
         }
     }
 }
