@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ITBedrijfProject.DataAcces;
+using ITBedrijfProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,8 @@ namespace ITBedrijfProject.Controllers
         // GET: Kassa
         public ActionResult Index()
         {
+            List<Register> registers = DAOrganisationRegister.GetRegisters();
+            ViewBag.Registers = registers;
             return View();
         }
     }

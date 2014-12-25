@@ -90,5 +90,25 @@ namespace ITBedrijfProject.DataAcces
             return Database.ModifyData(CONNECTIONSTRING, sql, par1, par2, par3, par4, par5, par6, par7, par8, par9, par10);
         }
 
+        public static List<Register> GetRegisters()
+        {
+            string sql = "SELECT * FROM Registers";
+            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql);
+            List<Register> Registers = new List<Register>();
+            while (reader.Read())
+            {
+                Register register = new Register();
+                register.Id = (int)reader["ID"];
+                register.RegisterName = reader["RegisterName"].ToString();
+                register.Device = reader["Device"].ToString();
+                register.PurchaseDate = (DateTime)reader["PurchaseDate"];
+                register.ExpiresDate = (DateTime)reader["ExpiresDate"];
+              
+
+                Registers.Add(register);
+            }
+            return Registers;
+        }
+
     }
 }
