@@ -1,0 +1,34 @@
+﻿@model ITBedrijfProject.Models.Register
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@using (Html.BeginForm("Index", "Kassa", FormMethod.Post))
+{
+    <table>
+
+        <tr>
+            <td><label>Register Name</label></td>
+            <td> @ViewBag.Register.RegisterName </td>
+        </tr>
+        <tr>
+            <td><label>Device</label></td>
+            <td> @ViewBag.Register.Device </td>
+        </tr>
+        <tr>
+            <td><label>PurchaseDate</label></td>
+            <td> @ViewBag.Register.PurchaseDate </td>
+        </tr>
+        <tr>
+            <td><label>ExpiresDate</label></td>
+            <td> @ViewBag.Register.ExpiresDate </td>
+        </tr>
+       
+    </table>
+
+    <br />
+    <input type="submit" name="Back" value="Back" />
+}

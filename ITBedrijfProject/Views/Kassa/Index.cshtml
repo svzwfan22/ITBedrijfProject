@@ -5,7 +5,7 @@
 }
 
 <h2>Kassa's</h2>
-<p><a href="">Nieuwe kassa</a></p>
+<p><a href="/Kassa/NewRegister">Nieuwe kassa</a></p>
 <table>
     <tr>
         <td width="200px">@Html.LabelFor(a => a.RegisterName)</td>
@@ -21,7 +21,7 @@
             <td>@item.Device</td>
             <td>@item.PurchaseDate</td>
             <td>@item.ExpiresDate</td>
-            <td><a href="">Details</a> | <a href="">Bewerken</a>
+            <td><a href="/Kassa/Details?id=@item.Id">Details</a> | <a href="">Bewerken</a>
         </tr>
     }
 

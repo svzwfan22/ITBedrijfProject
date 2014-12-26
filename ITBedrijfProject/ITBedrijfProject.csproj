@@ -174,9 +174,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ErrorLog.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Organisation.cs" />
+    <Compile Include="Models\OrganisationRegister.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="PresentationModels\PMIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,6 +246,8 @@
     <Content Include="Views\Vereniging\NewOrganisation.cshtml" />
     <Content Include="Views\Vereniging\Details.cshtml" />
     <Content Include="Views\Vereniging\Edit.cshtml" />
+    <Content Include="Views\Kassa\NewRegister.cshtml" />
+    <Content Include="Views\Kassa\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

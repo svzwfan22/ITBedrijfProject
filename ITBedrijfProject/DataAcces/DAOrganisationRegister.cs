@@ -110,5 +110,73 @@ namespace ITBedrijfProject.DataAcces
             return Registers;
         }
 
+        public static List<OrganisationRegister> GetOrganisationRegisters()
+        {
+            string sql = "SELECT * FROM Organisation_Register";
+            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql);
+            List<OrganisationRegister> OrganisationRegisters = new List<OrganisationRegister>();
+            while (reader.Read())
+            {
+                OrganisationRegister organisationregister = new OrganisationRegister();
+                organisationregister.OrganisationID = (int)reader["OrganisationID"];
+                organisationregister.RegisterID = (int)reader["RegisterID"];
+                organisationregister.FromDate = (DateTime)reader["FromDate"];
+                organisationregister.UntilDate = (DateTime)reader["UntilDate"];
+
+
+                OrganisationRegisters.Add(organisationregister);
+            }
+            return OrganisationRegisters;
+        }
+
+
+        internal static int InsertRegister(string RegisterName, string Device, DateTime PurchaseDate, DateTime ExpiresDate)
+        {
+            string sql = "INSERT INTO Registers VALUES(@RegisterName,@Device,@PurchaseDate,@ExpiresDate)";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@RegisterName", RegisterName);
+            DbParameter par2 = Database.AddParameter(CONNECTIONSTRING, "@Device", Device);
+            DbParameter par3 = Database.AddParameter(CONNECTIONSTRING, "@PurchaseDate", PurchaseDate);
+            DbParameter par4 = Database.AddParameter(CONNECTIONSTRING, "@ExpiresDate", ExpiresDate);
+            
+
+            return Database.InsertData(CONNECTIONSTRING, sql, par1, par2, par3, par4);
+        }
+
+        public static Register GetRegisterById(int id)
+        {
+            string sql = "SELECT * FROM Registers WHERE ID=@ID";
+            DbParameter par1 = Database.AddParameter(CONNECTIONSTRING, "@ID", id);
+            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql, par1);
+            Register register = new Register();
+            while (reader.Read())
+            {
+                register.Id = (int)reader["ID"];
+                register.RegisterName = reader["RegisterName"].ToString();
+                register.Device = reader["Device"].ToString();
+                register.PurchaseDate = (DateTime)reader["PurchaseDate"];
+                register.ExpiresDate = (DateTime)reader["ExpiresDate"];
+               
+            }
+            return register;
+        }
+
+        public static List<Errorlog> GetErrorlog()
+        {
+            string sql = "SELECT * FROM Errorlog";
+            DbDataReader reader = Database.GetData(CONNECTIONSTRING, sql);
+            List<Errorlog> Errorlog = new List<Errorlog>();
+            while (reader.Read())
+            {
+                Errorlog errorlog = new Errorlog();
+                errorlog.RegisterID = (int)reader["RegisterID"];
+                errorlog.Timestamp = (DateTime)reader["Timestamp"];
+                errorlog.Message = reader["Message"].ToString();
+                errorlog.Stacktrace = reader["Stacktrace"].ToString();
+
+
+                Errorlog.Add(errorlog);
+            }
+            return Errorlog;
+        }
     }
 }

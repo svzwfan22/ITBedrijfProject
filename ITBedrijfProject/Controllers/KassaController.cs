@@ -17,5 +17,36 @@ namespace ITBedrijfProject.Controllers
             ViewBag.Registers = registers;
             return View();
         }
+
+        [HttpGet]
+        public ActionResult NewRegister()
+        {
+            //var context = new ApplicationDbContext();
+            //ViewBag.Users = context.Users;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewRegister(string RegisterName, string Device, DateTime PurchaseDate, DateTime ExpiresDate)
+        {
+            DAOrganisationRegister.InsertRegister(RegisterName, Device, PurchaseDate, ExpiresDate);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            Register register = DAOrganisationRegister.GetRegisterById(id);
+            ViewBag.Register = register;
+            ViewBag.Id = id;
+            return View(register);
+        }
+
+        [HttpPost]
+        public ActionResult Details()
+        {
+
+            return View("Index");
+        }
     }
 }
