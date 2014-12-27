@@ -9,14 +9,28 @@ using System.Threading.Tasks;
 
 namespace ITBedrijfProject.DataAcces
 {
-     class Database
+    
+class Database
     {
+        public static ConnectionStringSettings CreateConnectionString(string provider, string server, string database, string username, string password)
+        {
+            ConnectionStringSettings settings = new ConnectionStringSettings();
+            settings.ProviderName = provider;
+            if (username == "" && password == "") settings.ConnectionString = "Data Source=" + server + ";Initial Catalog=" + database + ";Integrated Security=True";
+            else settings.ConnectionString = "Data Source=" + server + ";Initial Catalog=" + database + ";User ID=" + username + ";Password=" + password;
+            return settings;
+        }
 
-        private static DbConnection GetConnection(string ConnectionString)
+        public static DbConnection GetConnection(string ConnectionString)
         {
             ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[ConnectionString];
-            DbConnection con = DbProviderFactories.GetFactory(settings.ProviderName).CreateConnection();
-            con.ConnectionString = settings.ConnectionString;
+            return GetConnection(settings);
+        }
+
+        public static DbConnection GetConnection(ConnectionStringSettings Settings)
+        {
+            DbConnection con = DbProviderFactories.GetFactory(Settings.ProviderName).CreateConnection();
+            con.ConnectionString = Settings.ConnectionString;
             con.Open();
 
             return con;
@@ -31,9 +45,9 @@ namespace ITBedrijfProject.DataAcces
             }
         }
 
-        private static DbCommand BuildCommand(string ConnectionString, string sql, params DbParameter[] parameters)
+        private static DbCommand BuildCommand(DbConnection con, string sql, params DbParameter[] parameters)
         {
-            DbCommand command = GetConnection(ConnectionString).CreateCommand();
+            DbCommand command = con.CreateCommand();
             command.CommandType = CommandType.Text;
             command.CommandText = sql;
 
@@ -45,14 +59,14 @@ namespace ITBedrijfProject.DataAcces
             return command;
         }
 
-        public static DbDataReader GetData(string ConnectionString, string sql, params DbParameter[] parameters)
+        public static DbDataReader GetData(DbConnection con, string sql, params DbParameter[] parameters)
         {
             DbCommand command = null;
             DbDataReader reader = null;
 
             try
             {
-                command = BuildCommand(ConnectionString, sql, parameters);
+                command = BuildCommand(con, sql, parameters);
                 reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
                 return reader;
@@ -68,12 +82,12 @@ namespace ITBedrijfProject.DataAcces
             }
         }
 
-        public static int ModifyData(string ConnectionString, string sql, params DbParameter[] parameters)
+        public static int ModifyData(DbConnection con, string sql, params DbParameter[] parameters)
         {
             DbCommand command = null;
             try
             {
-                command = BuildCommand(ConnectionString, sql, parameters);
+                command = BuildCommand(con, sql, parameters);
                 int affected = command.ExecuteNonQuery();
                 command.Connection.Close();
 
@@ -88,12 +102,12 @@ namespace ITBedrijfProject.DataAcces
             }
         }
 
-        public static int InsertData(string ConnectionString, string sql, params DbParameter[] parameters)
+        public static int InsertData(DbConnection con, string sql, params DbParameter[] parameters)
         {
             DbCommand command = null;
             try
             {
-                command = BuildCommand(ConnectionString, sql, parameters);
+                command = BuildCommand(con, sql, parameters);
                 command.ExecuteNonQuery();
 
                 command.Parameters.Clear();
@@ -113,10 +127,18 @@ namespace ITBedrijfProject.DataAcces
             }
         }
 
-
         public static DbParameter AddParameter(string ConnectionString, string name, object value)
         {
             ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[ConnectionString];
+            DbParameter par = DbProviderFactories.GetFactory(settings.ProviderName).CreateParameter();
+            par.ParameterName = name;
+            par.Value = value;
+
+            return par;
+        }
+
+        public static DbParameter AddParameter(ConnectionStringSettings settings, string name, object value)
+        {
             DbParameter par = DbProviderFactories.GetFactory(settings.ProviderName).CreateParameter();
             par.ParameterName = name;
             par.Value = value;
@@ -130,6 +152,22 @@ namespace ITBedrijfProject.DataAcces
             try
             {
                 con = GetConnection(ConnectionString);
+                return con.BeginTransaction();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ReleaseConnection(con);
+                throw;
+            }
+        }
+
+        public static DbTransaction BeginTransaction(ConnectionStringSettings Setting)
+        {
+            DbConnection con = null;
+            try
+            {
+                con = GetConnection(Setting);
                 return con.BeginTransaction();
             }
             catch (Exception ex)
@@ -210,6 +248,5 @@ namespace ITBedrijfProject.DataAcces
                 throw;
             }
         }
-
     }
 }

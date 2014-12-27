@@ -50,7 +50,6 @@ C:\Users\Mike Sadonis\Documents\Serverside Application\Labo\ITBedrijfProject\ITB
 C:\Users\Mike Sadonis\Documents\Serverside Application\Labo\ITBedrijfProject\ITBedrijfProject\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Mike Sadonis\Documents\Serverside Application\Labo\ITBedrijfProject\ITBedrijfProject\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Mike Sadonis\Documents\Serverside Application\Labo\ITBedrijfProject\ITBedrijfProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Mike Sadonis\Documents\Serverside Application\Labo\ITBedrijfProject\ITBedrijfProject\obj\Debug\ITBedrijfProject.csprojResolveAssemblyReference.cache
 C:\Users\Mike Sadonis\Documents\Serverside Application\Labo\ITBedrijfProject\ITBedrijfProject\obj\Debug\ITBedrijfProject.dll
 C:\Users\Mike Sadonis\Documents\Serverside Application\Labo\ITBedrijfProject\ITBedrijfProject\obj\Debug\ITBedrijfProject.pdb
 C:\Users\Mike Sadonis\Documents\Serverside Application\Labo\ITBedrijfProject\ITBedrijfProject\obj\Debug\ITBedrijfProject.Migrations.initDatabase.resources
