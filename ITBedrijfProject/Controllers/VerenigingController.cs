@@ -32,7 +32,20 @@ namespace ITBedrijfProject.Controllers
         [HttpPost]
         public ActionResult NewOrganisation(string Login, string Password, string DbName, string DbLogin, string DbPassword, string OrganisationName, string Address, string Email, string Phone)
         {
-            DAOrganisationRegister.InsertOrganisation(Login,Password,DbName,DbLogin,DbPassword,OrganisationName,Address,Email,Phone);
+            
+                Organisation organisation = new Organisation();
+                organisation.Login = Login;
+                organisation.Password = Password;
+                organisation.DbName = DbName;
+                organisation.DbLogin = DbLogin;
+                organisation.DbPassword = DbPassword;
+                organisation.OrganisationName = OrganisationName;
+                organisation.Address = Address;
+                organisation.Email = Email;
+                organisation.Phone = Phone;
+
+                DAOrganisationRegister.InsertOrganisation(organisation);
+           
             return RedirectToAction("Index");
         }
 

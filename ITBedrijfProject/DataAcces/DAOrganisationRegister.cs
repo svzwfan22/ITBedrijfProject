@@ -35,21 +35,22 @@ namespace ITBedrijfProject.DataAcces
             return Organisations;
         }
 
-        public static int InsertOrganisation(string Login, string Password, string DbName, string DbLogin, string DbPassword, string OrganisationName, string Address, string Email, string Phone)
+        public static int InsertOrganisation(Organisation organisation)
         {
             string sql = "INSERT INTO Organisations VALUES(@Login,@Password,@DbName,@DbLogin,@DbPassword,@OrganisationName,@Address,@Email,@Phone)";
-            DbParameter par1 = Database.AddParameter("AdminDB", "@Login", Login);
-            DbParameter par2 = Database.AddParameter("AdminDB", "@Password", Password);
-            DbParameter par3 = Database.AddParameter("AdminDB", "@DbName", DbName);
-            DbParameter par4 = Database.AddParameter("AdminDB", "@DbLogin", DbLogin);
-            DbParameter par5 = Database.AddParameter("AdminDB", "@DbPassword", DbPassword);
-            DbParameter par6 = Database.AddParameter("AdminDB", "@OrganisationName", OrganisationName);
-            DbParameter par7 = Database.AddParameter("AdminDB", "@Address", Address);
-            DbParameter par8 = Database.AddParameter("AdminDB", "@Email", Email);
-            DbParameter par9 = Database.AddParameter("AdminDB", "@Phone", Phone);
+            DbParameter par1 = Database.AddParameter("AdminDB", "@Login", organisation.Login);
+            DbParameter par2 = Database.AddParameter("AdminDB", "@Password", organisation.Password);
+            DbParameter par3 = Database.AddParameter("AdminDB", "@DbName", organisation.DbName);
+            DbParameter par4 = Database.AddParameter("AdminDB", "@DbLogin", organisation.DbLogin);
+            DbParameter par5 = Database.AddParameter("AdminDB", "@DbPassword", organisation.DbPassword);
+            DbParameter par6 = Database.AddParameter("AdminDB", "@OrganisationName", organisation.OrganisationName);
+            DbParameter par7 = Database.AddParameter("AdminDB", "@Address", organisation.Address);
+            DbParameter par8 = Database.AddParameter("AdminDB", "@Email", organisation.Email);
+            DbParameter par9 = Database.AddParameter("AdminDB", "@Phone", organisation.Phone);
 
-            return Database.InsertData(Database.GetConnection("AdminDB"), sql, par1, par2, par3, par4, par5, par6, par7, par8, par9);
-            //CreateDb.CreateDatabase(organisation);
+            int Id = Database.InsertData(Database.GetConnection("AdminDB"), sql, par1, par2, par3, par4, par5, par6, par7, par8, par9);
+            CreateDb.CreateDatabase(organisation);
+            return Id;
         }
 
         public static Organisation GetOrganisationById(int id)

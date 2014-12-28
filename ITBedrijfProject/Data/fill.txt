@@ -1,5 +1,5 @@
 CREATE LOGIN [@@DbLogin] WITH PASSWORD=N'@@DbPassword', DEFAULT_DATABASE=[@@DbName], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
-GO
+G0
 USE [@@DbName]
 GO
 /****** Object:  User [LoginUser]    Script Date: 19/11/2014 20:35:46 ******/
@@ -161,3 +161,4 @@ REFERENCES [dbo].[Register] ([ID])
 GO
 ALTER TABLE [dbo].[Sale] CHECK CONSTRAINT [FK_Sale_Register]
 GO
+
