@@ -1,33 +1,33 @@
-﻿@model ITBedrijfProject.Models.Register
+﻿@model ITBedrijfProject.PresentationModels.PMRegister
 
 
 @{
     ViewBag.Title = "NewRegister";
 }
 
-<h2>NewRegister</h2>
+<h2>New Register</h2>
 
-<h2>New Organisation</h2>
 @using (Html.BeginForm("NewRegister", "Kassa", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table>
         <tr>
-            <td><label>RegisterName</label></td>
-            <td><input type="text" name="RegisterName" /></td>
+            <td>@Html.LabelFor(a => a.RegisterName)</td>
+            <td>@Html.TextBoxFor(a => a.RegisterName, new { placeholder = Html.DisplayNameFor(a => a.RegisterName) })</td>
         </tr>
         <tr>
-            <td><label>Device</label></td>
-            <td><input type="text" name="Device" /></td>
+            <td>@Html.LabelFor(a => a.Device)</td>
+            <td>@Html.TextBoxFor(a => a.Device, new { placeholder = Html.DisplayNameFor(a => a.Device) })</td>
         </tr>
         <tr>
-            <td><label>PurchaseDate</label></td>
-            <td><input type="date" name="PurchaseDate" /></td>
+            <td>@Html.LabelFor(a => a.PurchaseDate)</td>
+            <td><input type="date" value="@DateTime.Today" id="PurchaseDate" name="PurchaseDate" min="@DateTime.Today.Year-@DateTime.Today.Month-@DateTime.Today.Day" /></td>
+            <td><input type="time" value="@DateTime.Today" id="PurchaseTime" name="PurchaseTime" /></td>
         </tr>
         <tr>
-            <td><label>ExpiresDate</label></td>
-            <td><input type="date" name="ExpiresDate" /></td>
+            <td>@Html.LabelFor(a => a.ExpiresDate)</td>
+            <td><input type="date" value="@DateTime.Today" id="ExpiresDate" name="ExpiresDate" min="@DateTime.Today.AddDays(1).Year-@DateTime.Today.AddDays(1).Month-@DateTime.Today.AddDays(1).Day" /></td>
+            <td><input type="time" value="@DateTime.Today" id="ExpiresTime" name="ExpiresTime" /></td>
         </tr>
-       
     </table>
     <br />
 

@@ -8,45 +8,51 @@
 
 @using (Html.BeginForm("Edit", "Vereniging", FormMethod.Post))
 {
+    @Html.HiddenFor(a => a.Id);
     <table>
-        <input type="hidden" name="Id" value="@ViewBag.Id"/>
         <tr>
-            <td><label>Organisation Name</label></td>
-            <td><input type="text" name="OrganisationName" value="@ViewBag.Organisation.OrganisationName"></td>
+            <td>Persoonlijke Gegevens</td>
         </tr>
         <tr>
-            <td><label>Login</label></td>
-            <td> <input type="text" name="Login" value="@ViewBag.Organisation.Login"></td>
+            <td>@Html.LabelFor(a => a.OrganisationName)</td>
+            <td>@Html.TextBoxFor(a => a.OrganisationName)</td>
         </tr>
         <tr>
-            <td><label>Password</label></td>
-            <td> <input type="text" name="Password" value="@ViewBag.Organisation.Password"></td>
+            <td>@Html.LabelFor(a => a.Login)</td>
+            <td>@Html.TextBoxFor(a => a.Login)</td>
         </tr>
         <tr>
-            <td><label>DbName</label></td>
-            <td> <input type="text" name="DbName" value="@ViewBag.Organisation.DbName"></td>
+            <td>@Html.LabelFor(a => a.Password)</td>
+            <td>@Html.TextBoxFor(a => a.Password)</td>
         </tr>
         <tr>
-            <td><label>DbLogin</label></td>
-            <td> <input type="text" name="DbLogin" value="@ViewBag.Organisation.DbLogin"></td>
+            <td>@Html.LabelFor(a => a.Address)</td>
+            <td>@Html.TextBoxFor(a => a.Address)</td>
         </tr>
         <tr>
-            <td><label>DbPassword</label></td>
-            <td> <input type="text" name="DbPassword" value="@ViewBag.Organisation.DbPassword"></td>
+            <td>@Html.LabelFor(a => a.Email)</td>
+            <td>@Html.TextBoxFor(a => a.Email)</td>
         </tr>
         <tr>
-            <td><label>Address</label></td>
-            <td> <input type="text" name="Address" value="@ViewBag.Organisation.Address"></td>
+            <td>@Html.LabelFor(a => a.Phone)</td>
+            <td>@Html.TextBoxFor(a => a.Phone)</td>
+        </tr>
+       
+        <tr>
+            <td>Database Gegevens</td>
         </tr>
         <tr>
-            <td><label>Email</label></td>
-            <td> <input type="text" name="Email" value="@ViewBag.Organisation.Email"></td>
+            <td>@Html.LabelFor(a => a.DbName)</td>
+            <td>@Html.TextBoxFor(a => a.DbName)</td>
         </tr>
         <tr>
-            <td><label>Phone</label></td>
-            <td> <input type="text" name="Phone" value="@ViewBag.Organisation.Phone"></td>
+            <td>@Html.LabelFor(a => a.DbLogin)</td>
+            <td>@Html.TextBoxFor(a => a.DbLogin)</td>
         </tr>
-
+        <tr>
+            <td>@Html.LabelFor(a => a.DbPassword)</td>
+            <td>@Html.TextBoxFor(a => a.DbPassword)</td>
+        </tr>
     </table>
 
     <br />

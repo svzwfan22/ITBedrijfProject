@@ -182,6 +182,9 @@
     <Compile Include="Models\OrganisationRegister.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="PresentationModels\PMIndex.cs" />
+    <Compile Include="PresentationModels\PMOrganisation.cs" />
+    <Compile Include="PresentationModels\PMOrganisationRegister.cs" />
+    <Compile Include="PresentationModels\PMRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -243,7 +246,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Vereniging\Verenigingen.cshtml" />
     <Content Include="Views\Vereniging\Index.cshtml" />
     <Content Include="Views\Kassa\Index.cshtml" />
     <Content Include="Views\Vereniging\NewOrganisation.cshtml" />

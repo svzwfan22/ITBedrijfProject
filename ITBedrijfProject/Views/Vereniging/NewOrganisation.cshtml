@@ -1,4 +1,4 @@
-﻿
+﻿@model ITBedrijfProject.PresentationModels.PMOrganisation
 @{
     ViewBag.Title = "NewOrganisation";
 }
@@ -6,46 +6,53 @@
 <h2>New Organisation</h2>
 @using (Html.BeginForm("NewOrganisation", "Vereniging", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-<table>
-    <tr>
-        <td><label>Login</label></td>
-        <td><input type="text" name="Login"/></td>
-    </tr>
-    <tr>
-        <td><label>Password</label></td>
-        <td><input type="password" name="Password" /></td>
-    </tr>
-    <tr>
-        <td><label>Database Name</label></td>
-        <td><input type="text" name="DbName" /></td>
-    </tr>
-    <tr>
-        <td><label>Database Login</label></td>
-        <td><input type="text" name="DbLogin" /></td>
-    </tr>
-    <tr>
-        <td><label>Database Password</label></td>
-        <td><input type="password" name="DbPassword" /></td>
-    </tr>
-    <tr>
-        <td><label>Organisation Name</label></td>
-        <td><input type="text" name="OrganisationName" /></td>
-    </tr>
-    <tr>
-        <td><label>Address</label></td>
-        <td><input type="text" name="Address" /></td>
-    </tr>
-    <tr>
-        <td><label>Email</label></td>
-        <td><input type="text" name="Email" /></td>
-    </tr>
-    <tr>
-        <td><label>Phone</label></td>
-        <td><input type="text" name="Phone" /></td>
-    </tr>
-   
-    
-</table>
+    <table>
+        <tr>
+            <td>Persoonlijke Gegevens</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(a => a.OrganisationName)</td>
+            <td>@Html.TextBoxFor(a => a.OrganisationName, new { placeholder = Html.DisplayNameFor(a => a.OrganisationName) })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(a => a.Login)</td>
+            <td>@Html.TextBoxFor(a => a.Login, new { placeholder = Html.DisplayNameFor(a => a.Login) })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(a => a.Password)</td>
+            <td>@Html.PasswordFor(a => a.Password, new { placeholder = Html.DisplayNameFor(a => a.Password) })</td>
+        </tr>
+       
+        <tr>
+            <td>@Html.LabelFor(a => a.Address)</td>
+            <td>@Html.TextBoxFor(a => a.Address, new { placeholder = Html.DisplayNameFor(a => a.Address) })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(a => a.Email)</td>
+            <td>@Html.TextBoxFor(a => a.Email, new { placeholder = Html.DisplayNameFor(a => a.Email) })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(a => a.Phone)</td>
+            <td>@Html.TextBoxFor(a => a.Phone, new { placeholder = Html.DisplayNameFor(a => a.Phone) })</td>
+        </tr>
+        
+        <tr>
+            <td>Database Gegevens</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(a => a.DbLogin)</td>
+            <td>@Html.TextBoxFor(a => a.DbLogin, new { placeholder = Html.DisplayNameFor(a => a.DbLogin) })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(a => a.DbName)</td>
+            <td>@Html.TextBoxFor(a => a.DbName, new { placeholder = Html.DisplayNameFor(a => a.DbName) })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(a => a.DbPassword)</td>
+            <td>@Html.PasswordFor(a => a.DbPassword, new { placeholder = Html.DisplayNameFor(a => a.DbPassword) })</td>
+        </tr>
+       
+    </table>
     <br />
 
     <input type="submit" value="Create" />
