@@ -48,5 +48,21 @@ namespace ITBedrijfProject.Controllers
 
             return View("Index");
         }
+
+        [HttpGet]
+        public ActionResult Logs(int id)
+        {
+           // Register register = DAOrganisationRegister.GetRegisterById(id);
+            // ViewBag.Register = register;
+            // ViewBag.Id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Logs()
+        {
+
+            return View("Index");
+        }
     }
 }

@@ -253,6 +253,7 @@
     <Content Include="Views\Vereniging\Edit.cshtml" />
     <Content Include="Views\Kassa\NewRegister.cshtml" />
     <Content Include="Views\Kassa\Details.cshtml" />
+    <Content Include="Views\Kassa\Logs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,6 +8,8 @@
 
 @using (Html.BeginForm("Index", "Kassa", FormMethod.Post))
 {
+    @Html.HiddenFor(a => a.Id);
+    
     <table>
         <tr>
             <td>@Html.LabelFor(a => a.RegisterName)</td>
@@ -27,7 +29,7 @@
         </tr>
         
     </table>
-
-    <br />
-    <input type="submit" name="Back" value="Back" />
+    
+                <br />
+        <input type="submit" name="Back" value="Back" />
 }
