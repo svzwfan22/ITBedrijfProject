@@ -5,8 +5,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Verenigingen</h2>
-<p><a href="/Vereniging/NewOrganisation">Nieuwe vereniging</a></p>
+<h2>Organisations</h2>
+<p><a href="/Vereniging/NewOrganisation">New Organisation</a></p>
 <table>
     <tr>
         <td width="200px">@Html.LabelFor(a => a.OrganisationName)</td>
@@ -22,7 +22,7 @@
             <td>@item.Address</td>
             <td>@item.Email</td>
             <td>@item.Phone</td>
-            <td><a href="/Vereniging/Details?id=@item.Id">Details</a> | <a href="/Vereniging/Edit?id=@item.Id">Bewerken</a>
+            <td><a href="/Vereniging/Details?id=@item.Id">Details</a> | <a href="/Vereniging/Edit?id=@item.Id">Edit</a> | <a href="/Vereniging/Register?id=@item.Id">Registers</a>
         </tr>
     }
 

@@ -254,6 +254,9 @@
     <Content Include="Views\Kassa\NewRegister.cshtml" />
     <Content Include="Views\Kassa\Details.cshtml" />
     <Content Include="Views\Kassa\Logs.cshtml" />
+    <Content Include="Views\Vereniging\Register.cshtml" />
+    <Content Include="Views\Vereniging\NewRegister.cshtml" />
+    <Content Include="Views\Vereniging\EditRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

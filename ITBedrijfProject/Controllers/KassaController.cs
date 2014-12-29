@@ -52,10 +52,13 @@ namespace ITBedrijfProject.Controllers
         [HttpGet]
         public ActionResult Logs(int id)
         {
-           // Register register = DAOrganisationRegister.GetRegisterById(id);
-            // ViewBag.Register = register;
-            // ViewBag.Id = id;
-            return View();
+            Register register = DAOrganisationRegister.GetRegisterById(id);
+            ViewBag.Register = register;
+
+           List<Errorlog> log = DAOrganisationRegister.GetLogsById(id);
+             ViewBag.Log = log;
+             ViewBag.Id = id;
+             return View();
         }
 
         [HttpPost]

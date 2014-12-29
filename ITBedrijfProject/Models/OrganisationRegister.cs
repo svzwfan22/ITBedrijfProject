@@ -10,12 +10,26 @@ namespace ITBedrijfProject.Models
     public class OrganisationRegister
     {
         [Required]
-        [DisplayName("Organisation")]
         public int OrganisationID { get; set; }
 
         [Required]
-        [DisplayName("Register")]
+        [DisplayName("Organisation name")]
+        public string OrganisationName { get; set; }
+
+        [Required]
+        [DisplayName("Login")]
+        public string Login { get; set; }
+
+        [Required]
         public int RegisterID { get; set; }
+
+        [Required]
+        [DisplayName("Register name")]
+        public string RegisterName { get; set; }
+
+        [Required]
+        [DisplayName("Device")]
+        public string Device { get; set; }
 
         [Required]
         [DisplayName("From")]
