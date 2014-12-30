@@ -15,7 +15,7 @@ namespace ITBedrijfProject.Controllers
         // GET: Vereniging
         public ActionResult Index()
         {
-            List<Organisation> organisations = DAOrganisationRegister.GetOrganisations();
+            List<Organisation> organisations = DAOrganisation.GetOrganisations();
 
             ViewBag.Organisations = organisations;
 
@@ -31,29 +31,21 @@ namespace ITBedrijfProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewOrganisation(string Login, string Password, string DbName, string DbLogin, string DbPassword, string OrganisationName, string Address, string Email, string Phone)
+        public ActionResult NewOrganisation(PMOrganisation organisation)
         {
-            
-                Organisation organisation = new Organisation();
-                organisation.Login = Login;
-                organisation.Password = Password;
-                organisation.DbName = DbName;
-                organisation.DbLogin = DbLogin;
-                organisation.DbPassword = DbPassword;
-                organisation.OrganisationName = OrganisationName;
-                organisation.Address = Address;
-                organisation.Email = Email;
-                organisation.Phone = Phone;
 
-                DAOrganisationRegister.InsertOrganisation(organisation);
-           
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (DAOrganisation.InsertOrganisation(organisation) < 0) return View(organisation);
+                return RedirectToAction("Index");
+            }
+            return View(organisation);
         }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
-            Organisation organisation = DAOrganisationRegister.GetOrganisationById(id);
+            Organisation organisation = DAOrganisation.GetOrganisationById(id);
             ViewBag.Organisation = organisation;
             ViewBag.Id = id;
             return View(organisation);
@@ -69,18 +61,22 @@ namespace ITBedrijfProject.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            Organisation organisation = DAOrganisationRegister.GetOrganisationById(id);
+            Organisation organisation = DAOrganisation.GetOrganisationById(id);
             ViewBag.Organisation = organisation;
             ViewBag.Id = id;
             return View(organisation);
         }
 
         [HttpPost]
-        public ActionResult Edit(int Id, string Login, string Password, string DbName, string DbLogin, string DbPassword, string OrganisationName, string Address, string Email, string Phone)
+        public ActionResult Edit(PMOrganisation organisation, int id)
         {
 
-            DAOrganisationRegister.UpdateOrganisation(Id, Login, Password, DbName, DbLogin, DbPassword, OrganisationName, Address, Email, Phone);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                DAOrganisation.UpdateOrganisation(id, organisation);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Edit", new { organisation = organisation, id = id });
 
 
         }
@@ -89,7 +85,7 @@ namespace ITBedrijfProject.Controllers
         public ActionResult Register(int id)
         {
             ViewBag.Register = DAOrganisationRegister.GetOrganisationRegisterById(id);
-            ViewBag.Organisation = DAOrganisationRegister.GetOrganisationById(id);
+            ViewBag.Organisation = DAOrganisation.GetOrganisationById(id);
             return View();
         }
 
@@ -106,9 +102,9 @@ namespace ITBedrijfProject.Controllers
         public ActionResult NewRegister(int id)
         {
             PMOrganisationRegister organisationRegister = new PMOrganisationRegister();
-            organisationRegister.NewRegister = new MultiSelectList(DAOrganisationRegister.GetRegisters(), "Id", "RegisterName", "Device");
+            organisationRegister.NewRegister = new MultiSelectList(DARegister.GetRegisters(), "Id", "RegisterName", "Device");
             organisationRegister.OrganisationID = id;
-            ViewBag.Organisation = DAOrganisationRegister.GetOrganisationById(id);
+            ViewBag.Organisation = DAOrganisation.GetOrganisationById(id);
             return View(organisationRegister);
         }
 
@@ -130,7 +126,7 @@ namespace ITBedrijfProject.Controllers
         public ActionResult EditRegister(int organisationID, int registerID)
         {
             PMOrganisationRegister organisationRegister = new PMOrganisationRegister();
-            organisationRegister.NewOrganisation = new MultiSelectList(DAOrganisationRegister.GetOrganisations(), "Id", "OrganisationName");
+            organisationRegister.NewOrganisation = new MultiSelectList(DAOrganisation.GetOrganisations(), "Id", "OrganisationName");
             OrganisationRegister or = DAOrganisationRegister.GetOrganisationRegisterByIds(organisationID, registerID);
             organisationRegister.Device = or.Device;
             organisationRegister.FromDate = or.FromDate;
@@ -141,7 +137,7 @@ namespace ITBedrijfProject.Controllers
             organisationRegister.RegisterName = or.RegisterName;
             organisationRegister.UntilDate = or.UntilDate;
 
-            ViewBag.Organisation = DAOrganisationRegister.GetOrganisationById(organisationID);
+            ViewBag.Organisation = DAOrganisation.GetOrganisationById(organisationID);
             ViewBag.oldId = organisationID;
             return View(organisationRegister);
         }

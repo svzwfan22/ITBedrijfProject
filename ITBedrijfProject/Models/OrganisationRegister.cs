@@ -14,10 +14,12 @@ namespace ITBedrijfProject.Models
 
         [Required]
         [DisplayName("Organisation name")]
+        [StringLength(100, ErrorMessage = "Minimum 2 characters.", MinimumLength = 2)]
         public string OrganisationName { get; set; }
 
         [Required]
         [DisplayName("Login")]
+        [StringLength(100, ErrorMessage = "Minimum 2 characters.", MinimumLength = 2)]
         public string Login { get; set; }
 
         [Required]
@@ -25,10 +27,12 @@ namespace ITBedrijfProject.Models
 
         [Required]
         [DisplayName("Register name")]
+        [StringLength(100, ErrorMessage = "Minimum 2 characters.", MinimumLength = 2)]
         public string RegisterName { get; set; }
 
         [Required]
         [DisplayName("Device")]
+        [StringLength(100, ErrorMessage = "Minimum 2 characters.", MinimumLength = 2)]
         public string Device { get; set; }
 
         [Required]

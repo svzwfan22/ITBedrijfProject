@@ -1,5 +1,6 @@
 ﻿using ITBedrijfProject.DataAcces;
 using ITBedrijfProject.Models;
+using ITBedrijfProject.PresentationModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace ITBedrijfProject.Controllers
         // GET: Kassa
         public ActionResult Index()
         {
-            List<Register> registers = DAOrganisationRegister.GetRegisters();
+            List<Register> registers = DARegister.GetRegisters();
             ViewBag.Registers = registers;
             return View();
         }
@@ -27,16 +28,21 @@ namespace ITBedrijfProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewRegister(string RegisterName, string Device, DateTime PurchaseDate, DateTime ExpiresDate)
+        public ActionResult NewRegister(PMRegister register)
         {
-            DAOrganisationRegister.InsertRegister(RegisterName, Device, PurchaseDate, ExpiresDate);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (register.PurchaseDate >= register.ExpiresDate) return View(register);
+                DARegister.InsertRegister(register);
+                return RedirectToAction("Index");
+            }
+            return View(register);
         }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
-            Register register = DAOrganisationRegister.GetRegisterById(id);
+            Register register = DARegister.GetRegisterById(id);
             ViewBag.Register = register;
             ViewBag.Id = id;
             return View(register);
@@ -52,10 +58,10 @@ namespace ITBedrijfProject.Controllers
         [HttpGet]
         public ActionResult Logs(int id)
         {
-            Register register = DAOrganisationRegister.GetRegisterById(id);
+            Register register = DARegister.GetRegisterById(id);
             ViewBag.Register = register;
 
-           List<Errorlog> log = DAOrganisationRegister.GetLogsById(id);
+           List<Errorlog> log = DAErrorLog.GetLogsById(id);
              ViewBag.Log = log;
              ViewBag.Id = id;
              return View();

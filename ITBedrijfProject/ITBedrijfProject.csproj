@@ -164,7 +164,10 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\VerenigingController.cs" />
     <Compile Include="DataAcces\CreateDb.cs" />
+    <Compile Include="DataAcces\DAErrorLog.cs" />
+    <Compile Include="DataAcces\DAOrganisation.cs" />
     <Compile Include="DataAcces\DAOrganisationRegister.cs" />
+    <Compile Include="DataAcces\DARegister.cs" />
     <Compile Include="DataAcces\Database.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
