@@ -39,12 +39,16 @@ namespace ITBedrijfProject.Migrations
                 var manager = new UserManager<ApplicationUser>(store);
                 var user = new ApplicationUser()
                 {
-                    Login = "Mike",
-                    Password = "27-09-93",
+                    FirstName = "Mike",
+                    Name = "Sadonis",
                     Email = "mike.sadonis@student.howest.be",
-                    UserName = "mike.sadonis@test.be"
+                    UserName = "mike.sadonis@student.howest.be",
+                    Address = "Smissestraat 11",
+                    City = "Outrijve",
+                    Zipcode = "8582",
+                    
                 };
-                manager.Create(user, "-Password1");
+                manager.Create(user, "123456");
                 manager.AddToRole(user.Id, roleAdmin);
             }
         }

@@ -1,4 +1,5 @@
 ﻿using ITBedrijfProject.Models;
+using ITBedrijfProject.PresentationModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -51,12 +52,12 @@ namespace ITBedrijfProject.DataAcces
             return Id;
         }
 
-        public static Organisation GetOrganisationById(int id)
+        public static PMOrganisation GetOrganisationById(int id)
         {
             string sql = "SELECT * FROM Organisations WHERE ID=@ID";
             DbParameter par1 = Database.AddParameter("AdminDB", "@ID", id);
             DbDataReader reader = Database.GetData(Database.GetConnection("AdminDB"), sql, par1);
-            Organisation organisation = new Organisation();
+            PMOrganisation organisation = new PMOrganisation();
             while (reader.Read())
             {
                 organisation.Id = (int)reader["ID"];

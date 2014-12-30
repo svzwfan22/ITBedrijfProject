@@ -260,6 +260,8 @@
     <Content Include="Views\Vereniging\Register.cshtml" />
     <Content Include="Views\Vereniging\NewRegister.cshtml" />
     <Content Include="Views\Vereniging\EditRegister.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\ErrorLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

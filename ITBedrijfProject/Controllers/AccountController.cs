@@ -152,17 +152,14 @@ namespace ITBedrijfProject.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser 
-                { 
+                {
+                    Name = model.Name,
+                    FirstName = model.FirstName,
+                    Address = model.Address,
+                    City = model.City,
+                    Zipcode = model.Zipcode,
                     UserName = model.Email,
-                    Email = model.Email, 
-                    Adress = model.Address, 
-                    Login = model.Login,
-                    DbLogin = model.DbLogin,
-                    DbName = model.DbName,
-                    DbPassword = model.DbPassword,
-                    Phone = model.Phone,
-                    OrganisationName = model.OrganisationName,
-                    Password = model.Password
+                    Email = model.Email
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);

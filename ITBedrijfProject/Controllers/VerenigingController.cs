@@ -61,7 +61,7 @@ namespace ITBedrijfProject.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            Organisation organisation = DAOrganisation.GetOrganisationById(id);
+            PMOrganisation organisation = DAOrganisation.GetOrganisationById(id);
             ViewBag.Organisation = organisation;
             ViewBag.Id = id;
             return View(organisation);

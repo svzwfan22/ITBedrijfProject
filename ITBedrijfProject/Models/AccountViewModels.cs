@@ -79,29 +79,22 @@ namespace ITBedrijfProject.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
         [Required]
-        public string Login { get; set; }
-      
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
         [Required]
-        public string DbName { get; set; }
-
+        [Display(Name = "Name")]
+        public string Name { get; set; }
         [Required]
-        public string DbLogin { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        public string DbPassword { get; set; }
-
-        [Required]
-        public string OrganisationName { get; set; }
-
-        [Required]
+        [Display(Name = "Address")]
         public string Address { get; set; }
-
-        //public string Email { get; set; }
         [Required]
-        public string Phone { get; set; } 
+        [Display(Name = "City")]
+        public string City { get; set; }
+        [Required]
+        [Display(Name = "Zipcode")]
+        public string Zipcode { get; set; }
+       
 
     }
 

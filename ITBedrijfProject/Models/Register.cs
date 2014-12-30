@@ -13,13 +13,13 @@ namespace ITBedrijfProject.Models
 
         [Required]
         [DisplayName("Register name")]
-        [StringLength(100, ErrorMessage = "Minimum 2 characters.", MinimumLength = 2)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
 
         public string RegisterName { get; set; }
 
         [Required]
         [DisplayName("Device")]
-        [StringLength(100, ErrorMessage = "Minimum 2 characters.", MinimumLength = 2)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
 
         public string Device { get; set; }
 
