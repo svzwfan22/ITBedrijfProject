@@ -14,6 +14,7 @@ namespace ITBedrijfProject.Controllers
         // GET: Kassa
         public ActionResult Index()
         {
+            if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
             List<Register> registers = DARegister.GetRegisters();
             ViewBag.Registers = registers;
             return View();
@@ -22,6 +23,7 @@ namespace ITBedrijfProject.Controllers
         [HttpGet]
         public ActionResult NewRegister()
         {
+            if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
             //var context = new ApplicationDbContext();
             //ViewBag.Users = context.Users;
             return View();
@@ -30,6 +32,7 @@ namespace ITBedrijfProject.Controllers
         [HttpPost]
         public ActionResult NewRegister(PMRegister register)
         {
+            if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
             if (ModelState.IsValid)
             {
                 if (register.PurchaseDate >= register.ExpiresDate) return View(register);
@@ -42,6 +45,7 @@ namespace ITBedrijfProject.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
+            if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
             Register register = DARegister.GetRegisterById(id);
             ViewBag.Register = register;
             ViewBag.Id = id;
@@ -51,13 +55,14 @@ namespace ITBedrijfProject.Controllers
         [HttpPost]
         public ActionResult Details()
         {
-
+            if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
             return View("Index");
         }
 
         [HttpGet]
         public ActionResult Logs(int id)
         {
+            if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
             Register register = DARegister.GetRegisterById(id);
             ViewBag.Register = register;
 
@@ -70,7 +75,7 @@ namespace ITBedrijfProject.Controllers
         [HttpPost]
         public ActionResult Logs()
         {
-
+            if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
             return View("Index");
         }
     }
