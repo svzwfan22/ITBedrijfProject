@@ -58,5 +58,12 @@ namespace ITBedrijfProject.DataAcces
             }
             return register;
         }
+
+        public static int DeleteRegister(int id)
+        {
+            string sql = "Delete From Registers WHERE ID=@ID";
+            DbParameter par1 = Database.AddParameter("AdminDB", "@ID", id);
+            return Database.ModifyData(Database.GetConnection("AdminDB"), sql, par1);
+        }
     }
 }

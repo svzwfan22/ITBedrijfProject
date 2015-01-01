@@ -90,5 +90,12 @@ namespace ITBedrijfProject.DataAcces
 
             return Database.ModifyData(Database.GetConnection("AdminDB"), sql, par1, par2, par3, par4, par5, par6, par7, par8, par9, par10);
         }
+
+        public static int DeleteOrganisation(int id)
+        {
+            string sql = "Delete From Organisations WHERE ID=@ID";
+            DbParameter par1 = Database.AddParameter("AdminDB", "@ID", id);
+            return Database.ModifyData(Database.GetConnection("AdminDB"), sql, par1);
+        }
     }
 }

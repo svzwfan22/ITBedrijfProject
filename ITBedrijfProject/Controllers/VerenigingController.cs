@@ -162,6 +162,26 @@ namespace ITBedrijfProject.Controllers
             DAOrganisationRegister.UpdateOrganisationRegister(oldOrganisationID, organisationRegister);
             return RedirectToAction("Register", new { id = oldOrganisationID });
         }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
+            Organisation organisation = DAOrganisation.GetOrganisationById(id);
+            return View(organisation);
+        }
+
+        //Dit wordt uitgevoerd wanneer er op de deleteknop gedrukt wordt 
+        [HttpPost]
+        public ActionResult DeleteItem(int Id)
+        {
+
+            DAOrganisation.DeleteOrganisation(Id);
+
+            return RedirectToAction("Index");
+
+
+        }
     
     }
 }

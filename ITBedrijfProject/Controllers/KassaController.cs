@@ -78,5 +78,25 @@ namespace ITBedrijfProject.Controllers
             if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
             return View("Index");
         }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            if (User.Identity.Name == "") return RedirectToAction("ErrorLogin", "Home");
+            Register register = DARegister.GetRegisterById(id);
+            return View(register);
+        }
+
+        //Dit wordt uitgevoerd wanneer er op de deleteknop gedrukt wordt 
+        [HttpPost]
+        public ActionResult DeleteItem(int Id)
+        {
+            DARegister.DeleteRegister(Id);
+
+            return RedirectToAction("Index");
+
+
+        }
+    
     }
 }
